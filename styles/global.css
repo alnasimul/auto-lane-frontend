@@ -7,3 +7,7 @@
     display: inline-block;
     color: lightgray;
 }
+
+ul {
+    list-style: disc;
+}
