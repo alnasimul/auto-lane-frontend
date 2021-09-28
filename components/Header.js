@@ -14,16 +14,16 @@ const Header = () => {
         </Link>
         <nav className='flex flex-wrap md:w-4/5 items-center justify-end text-base md:ml-auto'>
           <Link href='/blog'>
-            <a className='mx-5 cursor-pointer uppercase hover:text-indigo-300'> Home </a>
+            <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> Home </a>
           </Link>
           <Link href='/services'>
-            <a className='mx-5 cursor-pointer uppercase hover:text-indigo-300'> Services </a>
+            <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> Services </a>
           </Link>
           <Link href='/about'>
-            <a className='mx-5 cursor-pointer uppercase hover:text-indigo-300'> About </a>
+            <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> About </a>
           </Link>
           <Link href='/login'>
-          <a className='mx-5 flex items-center bg-white p-2 rounded cursor-pointer uppercase text-black hover:text-red-700'> <FaSignInAlt/>  <span className='mx-3'>Login</span>   </a>
+          <a className='mx-3 md:mx-5 flex items-center bg-white p-2 rounded cursor-pointer text-black hover:text-red-700'> <FaSignInAlt/>  <span className='mx-3'>Login</span>   </a>
           </Link>
         </nav>
       </div>

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.info-icon{
+    width: 50px ;
+    display: inline-block;
+    color: lightgray;
+}
