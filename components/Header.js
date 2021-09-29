@@ -13,11 +13,11 @@ const Header = () => {
           </a>
         </Link>
         <nav className='flex flex-wrap md:w-4/5 items-center justify-end text-base md:ml-auto'>
-          <Link href='/blog'>
+          <Link href='/'>
             <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> Home </a>
           </Link>
-          <Link href='/services'>
-            <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> Services </a>
+          <Link href="/#services">
+            <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300' > Services </a>
           </Link>
           <Link href='/about'>
             <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> About </a>

@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import Link from "next/link";
-import { data } from "FakeData/Index";
+import { data } from "FakeData";
 
 const ServicePage = ({ service }) => {
     const { title, description, image, price, services } = service;

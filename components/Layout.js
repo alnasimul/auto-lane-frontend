@@ -20,7 +20,7 @@ const Layout = ({title, keywords, description, children}) => {
 }
 
 Layout.defaultProps = {
-    title: 'Welcome to Auto Lane',
+    title: 'Welcome to AutoLane',
     keywords: 'Car reparing service',
     description: 'Its all about car repairing service'
 }

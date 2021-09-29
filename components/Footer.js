@@ -8,9 +8,10 @@ const Footer = () => {
             <p>Copyright &copy; Auto Lane {new Date().getFullYear()}</p>
             <p>
                 <Link href='/about'>
-                    About This Project
+                    <a className='text-indigo-600'>About This Project</a> 
                 </Link>
-            </p></footer>
+            </p>
+        </footer>
     );
 }
 
