@@ -3,15 +3,53 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "@/styles/AuthForm.module.css";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createUserWithEmailAndPassword, initializeLoginFramework } from "@/helpers/loginManager";
 const RegisterPage = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
-    const handleSubmit = () => {
+    const [error, setError] = useState('')
+    const [user, setUser] = useState({
+        isSignedIn: false,
+        name: username,
+        email: email,
+        photo: '',
+        error: '',
+        success: false
+    })
 
+    initializeLoginFramework();
+    useEffect(() => error && toast.error(error))
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(password === passwordConfirm){
+            if(username && email && password){
+             createUserWithEmailAndPassword(username, email, password)
+             .then(res => {
+                 console.log(res)
+                 handleResponse(res,false)
+             })
+               
+            }
+        }else{
+            setError("Your password and confirm password field didn't match please try again" )
+        }
     }
+    const handleResponse = (res, redirect) => {
+        setUser(res);
+       // setLoggedInUser(res);
+
+        if (redirect) {
+            storeAuthToken(res);
+            // setTimeout( () => {
+            //     history.replace(from)
+            // },2000);
+           
+        }
+    }
+  //  console.log(user)
     return (
         <Layout>
             <div className={styles.auth}>

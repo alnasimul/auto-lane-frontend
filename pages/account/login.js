@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 import styles from "@/styles/AuthForm.module.css";
 import Link from "next/link";
 import { useState } from "react";
-import { handleGoogleSignIn, initializeLoginFramework, storeAuthToken } from "@/firebase/loginManager";
+import { handleGoogleSignIn, initializeLoginFramework, signInWithEmailAndPassword, storeAuthToken } from "@/helpers/loginManager";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -16,12 +16,19 @@ const LoginPage = () => {
         photo: '',
         error: '',
         success: false
-    })
+    });
 
     initializeLoginFramework();
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        if(email && password){
+            signInWithEmailAndPassword(email, password)
+            .then(res => {
+                handleResponse(res, true);
+            })
+        }
     }
 
     const googleSignIn = () => {
@@ -42,7 +49,6 @@ const LoginPage = () => {
            
         }
     }
-    console.log(user)
     return (
         <Layout>
             <div className={styles.auth}>
