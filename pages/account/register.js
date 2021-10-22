@@ -11,7 +11,7 @@ const RegisterPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [error, setError] = useState('')
+    const [error, setError] = useState("")
 
     const {user, register} = useContext(AuthContext);
     

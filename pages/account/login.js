@@ -5,6 +5,7 @@ import styles from "@/styles/AuthForm.module.css";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
+import {withPublic} from "@/helpers/route";
 
 
 const LoginPage = () => {
@@ -12,7 +13,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const {user, login} = useContext(AuthContext);
+    const {user, login, googleSignIn} = useContext(AuthContext);
 
     if(user.error){
         setError(user.error);
@@ -71,4 +72,4 @@ const LoginPage = () => {
     );
 }
 
-export default LoginPage;
+export default withPublic(LoginPage);

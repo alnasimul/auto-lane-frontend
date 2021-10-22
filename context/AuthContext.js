@@ -1,12 +1,14 @@
-import { createUserWithEmailAndPassword, handleGoogleSignIn, initializeLoginFramework, signInWithEmailAndPassword, storeAuthToken } from "@/helpers/loginManager";
-import { createContext, useState } from "react";
+import firebase from "firebase/app";
+import 'firebase/auth';
+import { createUserWithEmailAndPassword, handleGoogleSignIn, handleSignOut, initializeLoginFramework, signInWithEmailAndPassword, storeAuthToken } from "@/helpers/loginManager";
+import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState({
         isSignedIn: false,
         name: '',
-        email: email,
+        email: '',
         photo: '',
         error: '',
         success: false
@@ -14,6 +16,10 @@ const AuthProvider = ({children}) => {
 
     initializeLoginFramework();
 
+    useEffect(() => {
+       checkUserLoggedIn();
+       console.log('logged in user checked');
+    },[])
 
     const googleSignIn = () => {
         handleGoogleSignIn()
@@ -35,7 +41,9 @@ const AuthProvider = ({children}) => {
             })
     }
     const handleResponse = (res, redirect) => {
-        setUser(res);
+        if(res.success){
+            setUser(res);
+        }
         // setLoggedInUser(res);
 
         if (redirect) {
@@ -46,8 +54,45 @@ const AuthProvider = ({children}) => {
 
         }
     }
+    console.log(user)
+    const signOut = () => {
+        handleSignOut()
+        const signedOutUser = {
+            isSignedIn: false,
+            name: '',
+            email: '',
+            photo: '',
+            error: '',
+            success: false
+        }
+        handleResponse(signedOutUser, false)
+        console.log("logged out successfully")
+    }
+    const checkUserLoggedIn = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            if(user){
+                setUser({
+                    isSignedIn: true,
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    error: user.error ? user.error : '',
+                    success: true
+                });
+            }else{
+                setUser({
+                        isSignedIn: false,
+                        name: '',
+                        email: '',
+                        photo: '',
+                        error: '',
+                        success: false
+            })
+            }
+        })
+    }
     return (
-        <AuthContext.Provider value={{ user, googleSignIn, login, register }}>
+        <AuthContext.Provider value={{ user, googleSignIn, login, register, checkUserLoggedIn, signOut }}>
             {children}
         </AuthContext.Provider>
     );
