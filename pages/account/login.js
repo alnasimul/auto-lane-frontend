@@ -3,52 +3,31 @@ import "react-toastify/dist/ReactToastify.css";
 import Layout from "@/components/Layout";
 import styles from "@/styles/AuthForm.module.css";
 import Link from "next/link";
-import { useState } from "react";
-import { handleGoogleSignIn, initializeLoginFramework, signInWithEmailAndPassword, storeAuthToken } from "@/helpers/loginManager";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
+
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, setUser] = useState({
-        isSignedIn: false,
-        name: '',
-        email: email,
-        photo: '',
-        error: '',
-        success: false
-    });
+    const [error, setError] = useState("");
 
-    initializeLoginFramework();
+    const {user, login} = useContext(AuthContext);
 
+    if(user.error){
+        setError(user.error);
+    }
+
+    useEffect(() => error && toast.error(error))
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if(email && password){
-            signInWithEmailAndPassword(email, password)
-            .then(res => {
-                handleResponse(res, true);
-            })
+          login(email, password)
         }
     }
 
-    const googleSignIn = () => {
-        handleGoogleSignIn()
-        .then(res => {
-            handleResponse(res,true)
-        })
-    }
-    const handleResponse = (res, redirect) => {
-        setUser(res);
-       // setLoggedInUser(res);
-
-        if (redirect) {
-            storeAuthToken(res);
-            // setTimeout( () => {
-            //     history.replace(from)
-            // },2000);
-           
-        }
-    }
     return (
         <Layout>
             <div className={styles.auth}>
