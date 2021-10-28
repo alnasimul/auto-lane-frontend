@@ -3,7 +3,7 @@ import Link from "next/link";
 import { data } from "FakeData";
 
 const ServicePage = ({ service }) => {
-    const { title, description, image, price, services } = service;
+    const { title, description, image, price, services, slug } = service;
     return (
         <Layout title={title}>
             <Link href='/'>
@@ -32,6 +32,9 @@ const ServicePage = ({ service }) => {
                             </div>
                         }
                         <p className="text-red-500 mt-5 font-bold">Pricing: $ {price}</p>
+                        <Link href={`/services/booking/${slug}`}>
+                            <button className='bg-transparent hover:bg-black text-black-700 font-semibold hover:text-white py-2 px-3 border border-black hover:border-transparent rounded mt-5'>Book Service</button>
+                        </Link>
                     </div>
                 </div>
             </div>

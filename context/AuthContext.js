@@ -18,7 +18,6 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
        checkUserLoggedIn();
-       console.log('logged in user checked');
     },[])
 
     const googleSignIn = () => {
@@ -54,7 +53,6 @@ const AuthProvider = ({children}) => {
 
         }
     }
-    console.log(user)
     const signOut = () => {
         handleSignOut()
         const signedOutUser = {
@@ -66,7 +64,6 @@ const AuthProvider = ({children}) => {
             success: false
         }
         handleResponse(signedOutUser, false)
-        console.log("logged out successfully")
     }
     const checkUserLoggedIn = () => {
         firebase.auth().onAuthStateChanged(user => {
@@ -79,6 +76,7 @@ const AuthProvider = ({children}) => {
                     error: user.error ? user.error : '',
                     success: true
                 });
+            handleResponse(user, true)
             }else{
                 setUser({
                         isSignedIn: false,
