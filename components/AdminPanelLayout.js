@@ -1,0 +1,30 @@
+import Head from "next/head";
+import Footer from "./Footer";
+import Sidebar from "./Sidebar";
+
+const AdminPanelLayout = ({ title, keywords, description, children }) => {
+    return (
+        <div>
+            <Head>
+                <title>{title}</title>
+                <meta name='keywords' content={keywords} />
+                <meta name='description' content={description} />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
+            <main className='container'>
+                <Sidebar />
+                {children}
+            </main>
+            <Footer />
+        </div>
+    );
+}
+
+AdminPanelLayout.defaultProps = {
+    title: 'Welcome to AutoLane',
+    keywords: 'Car reparing service',
+    description: 'Its all about car repairing service'
+}
+
+export default AdminPanelLayout;

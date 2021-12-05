@@ -4,7 +4,7 @@ import moment from 'moment';
 import styles from '@/styles/AppointmentForm.module.css';
 import autolaneApi from '../pages/api/autolane';
 
-const AppointmentForm = ({ date, appointmentSaved }) => {
+const AppointmentForm = ({ date, appointmentSaved, title, price }) => {
     const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm();
     // const [buttonForName, setButtonForName] = useState(true);
     // const [buttonForEmail, setButtonForEmail] = useState(true);
@@ -13,6 +13,11 @@ const AppointmentForm = ({ date, appointmentSaved }) => {
 
 
     const onSubmit = data => {
+        data.title = title;
+        data.price = price;
+        data.status = false;
+        data.assigned = false;
+        data.delivered = false;
         autolaneApi.post('/appointment',data)
         .then(res =>appointmentSaved(res.data))
     };
