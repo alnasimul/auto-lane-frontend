@@ -1,7 +1,7 @@
   .sidebar {
     margin: 0;
     padding: 0;
-    width: 220px; 
+    width: 15%; 
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -31,15 +31,20 @@
   
   @media screen and (max-width: 700px) {
     .sidebar {
+      width: 250% !important ;
+      height: auto !important;
+      position: relative !important;
+    }
+    .sidebar div {float: left;}
+  
+  }
+  
+  @media screen and (max-width: 400px) {
+    .sidebar {
       width: 100%;
       height: auto;
       position: relative;
     }
-    .sidebar div {float: left;}
-    div.content {margin-left: 0;}
-  }
-  
-  @media screen and (max-width: 400px) {
     .sidebar div {
       text-align: center;
       float: none;

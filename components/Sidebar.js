@@ -6,7 +6,7 @@ import {BiBarChartSquare} from 'react-icons/bi';
 import logo from '../public/images/logo404.png'
 const Sidebar = () => {
     return (
-        <div className={`bg-gray-900 w-full md:w-1/4 lg:w-1/4 ${styles.sidebar}`}>
+        <div className={`bg-gray-900 w-full sm:w-1/4 md:w-1/4 lg:w-1/4 ${styles.sidebar}`}>
             <div className="my-10 mx-2 flex">
                 <Image  src={logo} width={40} height={40}/>
                 <div>
