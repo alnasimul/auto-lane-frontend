@@ -16,8 +16,10 @@ const AppointmentForm = ({ date, appointmentSaved, title, price }) => {
         data.title = title;
         data.price = price;
         data.status = false;
-        data.assigned = false;
+        data.assigned = true;
         data.delivered = false;
+
+        console.log(data)
         autolaneApi.post('/appointment',data)
         .then(res =>appointmentSaved(res.data))
     };

@@ -17,7 +17,6 @@ const AdminPanelLayout = ({ title, keywords, description, children }) => {
                 <Sidebar />
                 {children}
             </main>
-            <Footer />
         </div>
     );
 }

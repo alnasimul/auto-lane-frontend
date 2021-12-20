@@ -6,8 +6,6 @@ import { useState } from "react";
 const AppointmentsPage = ({appointments}) => {
     const [selectedDate, setSelectedDate] = useState(new Date())
 
-    console.log(appointments)
-
     const handleDateChange = date => {
         setSelectedDate(date);
     }

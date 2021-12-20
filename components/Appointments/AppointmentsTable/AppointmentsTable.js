@@ -1,6 +1,7 @@
 import TableData from "./TableData/TableData";
 
-const AppointmentsTable = ({ appointments }) => {
+const AppointmentsTable = ({ appointments, updateCompletionStatus, updateDeliveryStatus, deleteAppointment }) => {
+   
     return (
         <div className="">
             <table className='table-auto text-xs border-b border-gray-200 shadow  rounded"'>
@@ -17,7 +18,7 @@ const AppointmentsTable = ({ appointments }) => {
             </thead>
             <tbody className="bg-white divide-y divide-gray-300">
               {
-                  appointments.map( appointment => <TableData key={appointment._id} appointment={appointment}/>)
+                  appointments.map( (appointment, index) => <TableData key={appointment._id} appointment={appointment} updateCompletionStatus={updateCompletionStatus} updateDeliveryStatus={updateDeliveryStatus} index={index} deleteAppointment={deleteAppointment}/>)
               }
             </tbody>
         </table>
