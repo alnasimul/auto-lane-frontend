@@ -19,6 +19,16 @@ const Appointments = ({appointments, handleDateChange}) => {
         })
     }
 
+    const updatePaymentStatus = (id, status) => {
+        // console.log(id)
+         autolaneApi.patch(`/updatePayment/${id}`,status)
+         .then(res => {
+             if(res.data){
+                 router.reload();
+             }
+         })
+     }
+
     const updateDeliveryStatus = (id, status) => {
         // console.log(id)
          autolaneApi.patch(`/updateDelivery/${id}`,status)
@@ -54,7 +64,7 @@ const Appointments = ({appointments, handleDateChange}) => {
             {
                 appointments.length > 0 ?  <div className="w-full mt-5 sm:w-2/4 sm:px-5 bg-white rounded-lg  text-center lg:mt-20 lg:mr-20 md:mr-5 ">
                 <h3 className="text-xl font-bold text-center mb-5 uppercase">Appointments</h3>
-                <AppointmentsTable appointments={appointments} updateCompletionStatus={updateCompletionStatus} updateDeliveryStatus={updateDeliveryStatus} deleteAppointment={deleteAppointment}/>
+                <AppointmentsTable appointments={appointments} updateCompletionStatus={updateCompletionStatus} updatePaymentStatus={updatePaymentStatus} updateDeliveryStatus={updateDeliveryStatus} deleteAppointment={deleteAppointment}/>
             </div> : <div className="w-full mt-10 sm:w-2/4 sm:px-5 bg-white rounded-lg  text-center lg:mt-20 lg:mr-20 md:mr-5 " >
             <h3 className="text-xl text-red-700 font-bold text-center mb-5 uppercase">No Appointments Available</h3>
             </div>

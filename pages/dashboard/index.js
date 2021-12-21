@@ -4,7 +4,9 @@ import Dashboard from "@/components/Dashboard";
 const index = () => {
     return (
         <AdminPanelLayout>
-           <Dashboard/>
+             <div className="w-full md:ml-60 lg:ml-60 ml-0">
+                 <Dashboard/>
+            </div>
         </AdminPanelLayout>
     );
 }

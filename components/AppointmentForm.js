@@ -17,6 +17,7 @@ const AppointmentForm = ({ date, appointmentSaved, title, price }) => {
         data.price = price;
         data.status = false;
         data.assigned = true;
+        data.paid = false;
         data.delivered = false;
 
         console.log(data)
