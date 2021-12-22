@@ -1,5 +1,7 @@
-const TableData = ({ appointment, index, updateCompletionStatus, updatePaymentStatus, updateDeliveryStatus, deleteAppointment }) => {
-    const { _id, date, title, customername, phone, regNo, status, paid, delivered } = appointment;
+import { FaToolbox } from "react-icons/fa";
+
+const TableData = ({ appointment, index, updateCompletionStatus, updatePaymentStatus, updateDeliveryStatus, deleteAppointment, user }) => {
+    const { _id, date, title, price, customername, phone, regNo, status, paid, delivered } = appointment;
 
     const alertForUpdateCompletion = (id,status) => {
         if (window.confirm("Are you sure want to update completion status ?")) {
@@ -25,15 +27,41 @@ const TableData = ({ appointment, index, updateCompletionStatus, updatePaymentSt
         }
     }
 
+    let engineer = ""
+
+    if(title === "A/C Services"){
+        engineer = "Brad Doe"
+    }else if(title === "Brake Repair"){
+        engineer = "John Smith"
+    }
+    else if(title === "Engine Repair"){
+        engineer = "Evan Fletcher"
+    }
+    else if(title === "Oil Change"){
+        engineer = "Morgan Dio"
+    }
+    else if(title === "Tire Repair"){
+        engineer = "Morgan Dio"
+    }
+    else if(title === "Performance"){
+        engineer = "Evan Fletcher"
+    }
+
     return (
         <tr className="whitespace-nowrap">
-            <td className="px-6 py-4 text-sm text-gray-500"> <strong> {date} </strong>  </td>
-            <td className="px-6 py-4 text-sm text-gray-500"> <strong> {title} </strong>  </td>
-            <td className="px-6 py-4 text-sm text-gray-500"> <strong> {customername} </strong></td>
-            <td className="px-6 py-4 text-sm text-gray-500"> <strong> {phone} </strong> </td>
-            <td className="px-6 py-4 text-sm text-gray-500"> <strong> {regNo} </strong></td>
-            <td className="px-6 py-4 text-sm text-gray-500">{status ? <span> &#9989; </span> : <span> &#10060; </span>} | {paid ? <span> &#9989; </span> : <span> &#10060; </span>} | {delivered ? <span> &#9989; </span> : <span> &#10060; </span>} </td>
-            <td className="px-6 py-4 text-sm text-gray-500">
+            <td className="px-4 py-4 text-sm text-gray-500"> <strong> {date} </strong>  </td>
+            <td className="px-4 py-4 text-sm text-gray-500"> <strong> {title} </strong> <br /> <div className="flex mt-2 "><FaToolbox className={user ? `mt-0.5 mr-2` : `mt-0.5 mr-2 ml-4`}/> {engineer} </div></td>
+            {
+                user &&  <td className="px-4 py-4 text-sm text-gray-500"> <strong> {price} </strong>  </td>
+            }
+            {
+                user ? null :  <td className="px-4 py-4 text-sm text-gray-500"> <strong> {customername} </strong></td>
+            }
+            <td className="px-4 py-4 text-sm text-gray-500"> <strong> {phone} </strong> </td>
+            <td className="px-4 py-4 text-sm text-gray-500"> <strong> {regNo} </strong></td>
+            <td className="px-4 py-4 text-sm text-gray-500">{status ? <span> &#9989; </span> : <span> &#10060; </span>} | {paid ? <span> &#9989; </span> : <span> &#10060; </span>} | {delivered ? <span> &#9989; </span> : <span> &#10060; </span>} </td>
+            {
+                user ? <td><button className="text-white uppercase bg-red-700 hover:bg-red-800 font-medium rounded-lg text-2xs px-5 py-2.5 inline-flex items-center" onClick={() => alertForDeleteAppointment(_id)}> Delete </button></td> :  <td className="px-6 py-4 text-sm text-gray-500">
                 <button id="dropdownDividerButton" data-dropdown-toggle={`dropdownDivider+${index}`} className="text-white uppercase bg-red-700 hover:bg-red-800 font-medium rounded-lg text-2xs px-5 py-2.5 inline-flex items-center">Actions <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
                 <div id={`dropdownDivider+${index}`} className="hidden uppercase text-xs font-bold bg-white divide-y divide-gray-100 rounded shadow w-30 dark:bg-gray-700 dark:divide-gray-600">
@@ -59,6 +87,7 @@ const TableData = ({ appointment, index, updateCompletionStatus, updatePaymentSt
                     </div>
                 </div>
             </td>
+            }
         </tr>
     );
 }

@@ -23,7 +23,7 @@ const Header = () => {
             <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300' > Services </a>
           </Link>
           {
-             user.email && <Link href='/dashboard'>
+             user.email && <Link href={`/dashboard?email=${user.email}`}>
               <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> Dashboard </a>
             </Link>
           }

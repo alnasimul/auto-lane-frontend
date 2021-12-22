@@ -6,11 +6,16 @@ import { useState } from "react";
 
 const AppointmentsPage = ({appointments}) => {
     const [selectedDate, setSelectedDate] = useState(new Date())
+    const [searchForm, setSearhForm] = useState(false)
     const [appointmentsByDate, setAppointmentsByDate] = useState(appointments)
 
     const handleDateChange = date => {
         setSelectedDate(date);
         findAppointmentByDate(date)
+    }
+
+    const handleSearchForm = command => {
+        setSearhForm(command)
     }
 
     const findAppointmentByDate = date => {
@@ -23,7 +28,7 @@ const AppointmentsPage = ({appointments}) => {
     return (
         <AdminPanelLayout>
             <div className="w-full md:ml-60 lg:ml-60 ml-0">
-                <Appointments date={selectedDate} handleDateChange={handleDateChange} appointments={appointmentsByDate ? appointmentsByDate : appointments}/> 
+                <Appointments date={selectedDate} handleDateChange={handleDateChange} appointments={appointmentsByDate ? appointmentsByDate : appointments} searchForm={searchForm} handleSearchForm={handleSearchForm}/> 
             </div>
         </AdminPanelLayout>
     );
