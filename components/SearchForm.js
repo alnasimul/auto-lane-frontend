@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form';
 import styles from "@/styles/SearchForm.module.css"
 import autolaneApi from '../pages/api/autolane';
 
-const SearchForm = ({handleSearchForm}) => {
+const SearchForm = ({handleSearchForm, searchAppointments}) => {
     const { register, handleSubmit, watch, formState: { errors }} = useForm();
 
         const onSubmit = data => {
-        console.log(data)
+        
+        searchAppointments(data)
         // autolaneApi.post('/appointment',data)
         // .then(res =>appointmentSaved(res.data))
     };
