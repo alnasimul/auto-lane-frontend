@@ -1,22 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import moment from 'moment';
 import styles from '@/styles/EditForm.module.css';
 import autolaneApi from 'pages/api/autolane';
+import { AuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/router';
 
 const EditFrom = ({ appointment }) => {
-    const {date,customername,customeremail, phone, regNo, address} = appointment
+    const {user} = useContext(AuthContext);
+
+    const {_id,date,customername,customeremail, phone, regNo, address} = appointment;
+
+    const router = useRouter();
 
     const { register, handleSubmit,  formState: { errors } } = useForm();
     const [username, setUserName] = useState(customername);
     const [useremail, setUserEmail] = useState(customeremail);
 
     const onSubmit = data => {
-        // if (typeof window !== 'undefined') {
-        //     // Perform localStorage action
-        //     const item = localStorage.getItem('key')
-        //   }
-        console.log("editform",data)
+        if (typeof window !== 'undefined') {
+            // Perform session storage action
+            const token = sessionStorage.getItem('token')
+            autolaneApi.patch(`/editAppointment/${_id}?email=${user.email}`, data, {
+                headers: {
+                    "Content-Type" : "application/json",
+                    authorization : `Bearer ${token}`
+                }
+            })
+            .then(res => {
+                if(res){
+                    router.push('/dashboard/appointments')
+                }
+            })
+          }
     };
     return (
         <div className={`${styles.appointment}`}>

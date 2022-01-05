@@ -58,7 +58,6 @@ const Appointments = ({
   };
 
   const searchAppointments = (data) => {
-    console.log("data", data);
 
     autolaneApi.post(`/searchAppointments`,data)
     .then(res => {
@@ -66,9 +65,9 @@ const Appointments = ({
             setSearchedAppointments(res.data)
         }
     } )
+    
   };
 
-  console.log(searchedAppointments);
 
   return (
     <div className="grid md:grid-cols-2 sm:flex">

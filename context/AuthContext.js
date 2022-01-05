@@ -29,7 +29,6 @@ const AuthProvider = ({children}) => {
     const register = (name, email, password) => {
         createUserWithEmailAndPassword(name, email, password)
             .then(res => {
-                console.log(res)
                 handleResponse(res, false)
             })
     }

@@ -9,7 +9,6 @@ const AppointmentsTable = ({
   user,
 }) => {
 
-  console.log(appointments)  
   return (
     <>
       {appointments.length > 0 ? (

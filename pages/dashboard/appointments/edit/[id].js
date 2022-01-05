@@ -4,8 +4,6 @@ import autolaneApi from 'pages/api/autolane';
 import React from 'react';
 
 const EditAppointmentPage = ({appointment}) => {
-
-    console.log(appointment)
     
     return (
         <AdminPanelLayout>

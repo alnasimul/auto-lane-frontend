@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '@/styles/Sidebar.module.css';
 import Image from 'next/image';
-import {  FaCalendarAlt,   FaHome, FaUserPlus, FaUsers  } from 'react-icons/fa';
+import {  FaCalendarAlt,   FaHome, FaList, FaPlus, FaUserPlus, FaUsers  } from 'react-icons/fa';
 import {BiBarChartSquare} from 'react-icons/bi';
 import logo from '../public/images/logo404.png'
 import { useContext } from 'react';
@@ -32,12 +32,22 @@ const Sidebar = () => {
                  <FaCalendarAlt/> <a>Appointments</a>
                 </div>
             </Link>
+            <Link href="/dashboard/services">
+                <div className='ml-3 text-white flex items-center cursor-pointer'>
+                <FaList/> <a>Services</a>
+                </div>
+            </Link>
+            <Link href="/dashboard/services/add">
+                <div className='ml-3 text-white flex items-center cursor-pointer'>
+                <FaPlus/>      <a>Add Service</a>
+                </div>
+            </Link>
             <Link href="/dashboard/engineers">
                 <div className='ml-3 text-white flex items-center cursor-pointer'>
                  <FaUsers/> <a>Engineers</a>
                 </div>
             </Link>
-            <Link href="/dashboard/addEngineer">
+            <Link href="/dashboard/engineers/add">
                 <div className='ml-3 text-white flex items-center cursor-pointer'>
                  <FaUserPlus/> <a>Add Engineer</a>
                 </div>
