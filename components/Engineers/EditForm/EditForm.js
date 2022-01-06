@@ -7,7 +7,9 @@ import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddEngineerForm = () => {
+const EditForm = ({engineer}) => {
+  const {_id, name, email, phone, salary, address, image} = engineer;
+
   const { user } = useContext(AuthContext);
 
   const router = useRouter();
@@ -24,14 +26,14 @@ const AddEngineerForm = () => {
 
         const token = sessionStorage.getItem('token');
 
-        autolaneApi.post(`/addEngineer/${user.email}`, data, {
+        autolaneApi.patch(`/editEngineer/${_id}?email=${user.email}`, data, {
             headers: {
                 "Content-Type" : "application/json",
                 authorization: `Bearer ${token}`
             }
         }).then((res) => {
           if (res.data) {
-            toast("New engineer added successfully");
+            toast("Engineer data updated successfully");
             router.push('/dashboard/engineers')
           }
         });
@@ -41,7 +43,7 @@ const AddEngineerForm = () => {
   return (
     <div className={`${styles.form}`}>
       <ToastContainer />
-      <h1 className="text-center text-xl font-bold mb-10"> Add an Engineer</h1>
+      <h1 className="text-center text-xl font-bold mb-10">Edit Engineer information</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete={`on`}
@@ -52,6 +54,7 @@ const AddEngineerForm = () => {
         </label>
         <input
           type="text"
+          defaultValue={name}
           {...register("name", { required: true })}
           className="border border-gray-400"
           placeholder="Name"
@@ -65,6 +68,7 @@ const AddEngineerForm = () => {
         </label>
         <input
           type="text"
+          defaultValue={email}
           {...register("email", { required: true })}
           className="border border-gray-400"
           placeholder="Email"
@@ -78,6 +82,7 @@ const AddEngineerForm = () => {
         </label>
         <input
           type="text"
+          defaultValue={phone}
           {...register("phone", { required: true })}
           className="border border-gray-400"
           placeholder="Phone"
@@ -91,6 +96,7 @@ const AddEngineerForm = () => {
         </label>
         <input
           type="text"
+          defaultValue={salary}
           {...register("salary", { required: true })}
           className="border border-gray-400"
           placeholder="Salary"
@@ -104,6 +110,7 @@ const AddEngineerForm = () => {
         </label>
         <input
           type="text"
+          defaultValue={address}
           {...register("address", { required: true })}
           className="border border-gray-400"
           placeholder="Address"
@@ -117,6 +124,7 @@ const AddEngineerForm = () => {
         </label>
         <input
           type="text"
+          defaultValue={image}
           {...register("image", { required: true })}
           className="border border-gray-400"
           placeholder="Image"
@@ -134,4 +142,4 @@ const AddEngineerForm = () => {
   );
 };
 
-export default AddEngineerForm;
+export default EditForm;
