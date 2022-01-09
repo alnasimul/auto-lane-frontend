@@ -32,7 +32,9 @@ export const handleGoogleSignIn = () => {
 export const handleSignOut = () => {
     return firebase.auth().signOut()
         .then(()=> {
-           
+           sessionStorage.removeItem('userInfo')
+           sessionStorage.removeItem('token')
+           sessionStorage.removeItem('admin')
         }).catch(err => {
             // An error happened.
         });

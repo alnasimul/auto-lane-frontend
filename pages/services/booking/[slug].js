@@ -5,6 +5,7 @@ import BookAppointment from "@/components/BookAppointment";
 import Layout from "@/components/Layout";
 import { data } from "FakeData";
 import { useState } from 'react';
+import { withProtected } from "@/helpers/route";
 
 const BookingPage = ({ service }) => {
     const [selectedDate, setSelectedDate] = useState(new Date())
@@ -56,4 +57,4 @@ export const getStaticProps = ({ params: { slug } }) => {
     }
 }
 
-export default BookingPage;
+export default withProtected(BookingPage);

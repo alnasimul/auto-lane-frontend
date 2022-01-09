@@ -27,11 +27,10 @@ const Header = () => {
               <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> Dashboard </a>
             </Link>
           }
-          {
-            user.email ? null : <Link href='/about'>
+            <Link href='/about'>
               <a className='mx-3 md:mx-5 cursor-pointer hover:text-indigo-300'> About </a>
             </Link>
-          }
+          
           {
             user.email ? <a className='mx-3 md:mx-5 flex items-center bg-white p-2 rounded cursor-pointer text-black hover:text-red-700' onClick={signOut} ><FaSignOutAlt /> <span className='mx-3'> Logout </span></a> : <Link href='/account/login'>
               <a className='mx-3 md:mx-5 flex items-center bg-white p-2 rounded cursor-pointer text-black hover:text-red-700'> <FaSignInAlt /> <span className='mx-3'>Login</span>    </a>

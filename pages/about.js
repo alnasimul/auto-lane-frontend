@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import { withProtected } from "@/helpers/route";
 import Link from "next/link";
 
 
@@ -27,4 +26,4 @@ const AboutPage = ({user}) => {
     );
 }
 
-export default withProtected(AboutPage);
+export default AboutPage;

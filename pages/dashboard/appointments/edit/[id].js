@@ -25,4 +25,5 @@ export const getServerSideProps = async ({params: {id}}) => {
     }
 }
 
+
 export default EditAppointmentPage;

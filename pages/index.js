@@ -6,6 +6,7 @@ import Service from "@/components/Service";
 import Testimonial from "@/components/Testimonial";
 import { data } from "FakeData";
 import { mechanics } from "FakeData/mechanics";
+import autolaneApi from "./api/autolane";
 
 
 export default function HomePage({ services, mechanics, users}) {
@@ -41,14 +42,24 @@ export default function HomePage({ services, mechanics, users}) {
   )
 }
 
-export const getStaticProps = async () => {
-  const services = data;
+export const getServerSideProps = async () => {
+ 
+
+  const res1 = await autolaneApi.get('/services')
+  const services = res1.data
+
+
   const mechanicsData = mechanics;
+
+  const res2 = await autolaneApi.get('/engineers')
+
+  const engineers = res2.data
+
 
   const res = await fetch('https://randomuser.me/api/?results=3')
   const users = await res.json();
 
   return {
-    props: { services, mechanics: mechanicsData, users: users.results }
+    props: { services, mechanics: engineers, users: users.results }
   }
 }

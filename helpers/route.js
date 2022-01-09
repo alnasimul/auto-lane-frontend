@@ -1,6 +1,7 @@
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/dist/client/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import autolaneApi from '../pages/api/autolane';
 
 
 export function withPublic(Component) {
@@ -34,3 +35,4 @@ export function withProtected(Component) {
 		return <Component user={user} {...props} />;
 	};
 }
+

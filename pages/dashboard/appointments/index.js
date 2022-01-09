@@ -4,11 +4,14 @@ import Appointments from "@/components/Appointments/Appointments";
 import autolaneApi from "pages/api/autolane";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { withAdmin } from "@/helpers/route";
 
 const AppointmentsPage = ({ appointments }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchForm, setSearhForm] = useState(false);
   const [appointmentsByDate, setAppointmentsByDate] = useState(appointments);
+
+ 
 
   const router = useRouter();
 
