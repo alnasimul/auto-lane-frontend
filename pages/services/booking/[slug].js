@@ -3,12 +3,12 @@ import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import BookAppointment from "@/components/BookAppointment";
 import Layout from "@/components/Layout";
-import { data } from "FakeData";
 import { useState } from 'react';
 import { withProtected } from "@/helpers/route";
 import { useRouter } from "next/router";
-import { useContext } from "react/cjs/react.development";
+import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
+import autolaneApi from "pages/api/autolane";
 
 const BookingPage = ({ service }) => {
     const [selectedDate, setSelectedDate] = useState(new Date())
@@ -33,7 +33,7 @@ const BookingPage = ({ service }) => {
                 draggable: true,
                 progress: undefined,
                 })
-            router.push(`/dashboard?email=${user.email}`)    
+            router.push(`/dashboard?email=${user.email}`)
         }
     }
     return (
@@ -44,22 +44,33 @@ const BookingPage = ({ service }) => {
     );
 }
 
-export const getStaticPaths = () => {
-    const services = data;
+// export const getStaticPaths = () => {
+//     const services = data;
 
-    const paths = services.map(service => ({
-        params: { slug: service.slug }
-    }))
+//     const paths = services.map(service => ({
+//         params: { slug: service.slug }
+//     }))
 
-    return {
-        paths,
-        fallback: false
-    }
-}
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
 
-export const getStaticProps = ({ params: { slug } }) => {
+// export const getStaticProps = ({ params: { slug } }) => {
 
-    const service = data.find(singleData => singleData.slug === slug);
+//     const service = data.find(singleData => singleData.slug === slug);
+//     return {
+//         props: { service }
+//     }
+// }
+
+export const getServerSideProps = async ({ params: { slug } }) => {
+
+    const res = await autolaneApi.get(`/findService/${slug}`)
+
+    const service = res.data;
+
     return {
         props: { service }
     }
