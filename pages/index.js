@@ -31,13 +31,13 @@ export default function HomePage({ services, mechanics, users}) {
         }
       </div>
 
-      <h1 className='text-4xl p-5 font-bold text-center mt-5 text-red-600'>Testimonials</h1>
+      {/* <h1 className='text-4xl p-5 font-bold text-center mt-5 text-red-600'>Testimonials</h1> */}
 
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:mx-3'>
+      {/* <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:mx-3'>
         {
           users.map((user, index) => <Testimonial key={index} user={user}/>)
         }
-      </div>
+      </div> */}
     </Layout>
   )
 }
