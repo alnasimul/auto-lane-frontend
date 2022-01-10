@@ -1,6 +1,5 @@
 import Layout from "@/components/Layout";
 import Link from "next/link";
-import { data } from "FakeData";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import autolaneApi from "pages/api/autolane";

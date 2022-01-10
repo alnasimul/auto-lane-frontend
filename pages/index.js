@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 import Mechanic from "@/components/Mechanic";
 import Service from "@/components/Service";
 import Testimonial from "@/components/Testimonial";
-import { data } from "FakeData";
+
 import { mechanics } from "FakeData/mechanics";
 import autolaneApi from "./api/autolane";
 
@@ -48,8 +48,6 @@ export const getServerSideProps = async () => {
   const res1 = await autolaneApi.get('/services')
   const services = res1.data
 
-
-  const mechanicsData = mechanics;
 
   const res2 = await autolaneApi.get('/engineers')
 
