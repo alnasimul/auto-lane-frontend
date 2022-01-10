@@ -14,8 +14,9 @@ class MyDocument extends Document {
                     <Main />
                     <NextScript />
                     <div id="modal-root"></div>
-                    <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
-                    <script src="../path/to/@themesberg/flowbite/dist/flowbite.bundle.js"></script>
+                    <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
+                    {/* <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script> */}
+                    {/* <script src={require('@themesberg/flowbite/dist/flowbite.bundle')}></script> */}
                 </body>
             </Html>
         )

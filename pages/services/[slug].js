@@ -3,6 +3,7 @@ import Link from "next/link";
 import { data } from "FakeData";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
+import autolaneApi from "pages/api/autolane";
 
 const ServicePage = ({ service }) => {
     const {user} = useContext(AuthContext);
@@ -29,7 +30,7 @@ const ServicePage = ({ service }) => {
                                   <h3 className='text-2xl font-bold text-gray-600'>Services we are providing</h3>
                                   <ul className="mt-3 ml-5">
                                       {services.map((service, index) => 
-                                          <li key={index} className='mb-3 text-gray-600'>{service}</li>
+                                          <li key={index} className='mb-3 text-gray-600'>{service.value}</li>
                                       )}
                                   </ul>
                             </div>
@@ -50,22 +51,24 @@ const ServicePage = ({ service }) => {
     );
 }
 
-export const getStaticPaths = async () => {
-    const services = data;
+// export const getStaticPaths = async () => {
+//     const services = data;
 
-    const paths = services.map(service => ({
-        params: { slug: service.slug }
-    }))
+//     const paths = services.map(service => ({
+//         params: { slug: service.slug }
+//     }))
 
-    return {
-        paths,
-        fallback: false
-    }
-}
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
 
-export const getStaticProps = async ({ params: { slug } }) => {
+export const getServerSideProps = async ({ params: { slug } }) => {
 
-    const service = data.find(singleData => singleData.slug === slug);
+    const res = await autolaneApi.get(`/findService/${slug}`)
+
+    const service = res.data;
 
     return {
         props: { service }

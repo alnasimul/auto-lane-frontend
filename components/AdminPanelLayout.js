@@ -11,6 +11,7 @@ const AdminPanelLayout = ({ title, keywords, description, children }) => {
                 <meta name='description' content={description} />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
+                {/* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"></link> */}
             </Head>
 
             <main className='container'>

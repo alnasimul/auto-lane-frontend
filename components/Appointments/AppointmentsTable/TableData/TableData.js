@@ -23,7 +23,6 @@ const TableData = ({
     delivered,
   } = appointment;
 
-
   const alertForUpdateCompletion = (id, status) => {
     if (window.confirm("Are you sure want to update completion status ?")) {
       updateCompletionStatus(id, status);
@@ -115,11 +114,113 @@ const TableData = ({
         </td>
       ) : (
         <td className="px-6 py-4 text-sm text-gray-500">
+          {/* <div className="dropdown">
+            <button
+              className="btn btn-dark dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Actions
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() =>
+                    alertForUpdateCompletion(_id, { status: true })
+                  }
+                >
+                  Completed
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() => {
+                    alertForUpdatePayment(_id, { paid: true });
+                  }}
+                >
+                  Paid
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() =>
+                    alertForUpdateDelivery(_id, { delivered: true })
+                  }
+                >
+                  Delivered
+                </a>
+              </li>
+              <li>
+                <Link href={`/dashboard/appointments/edit/${_id}`}>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                    Edit
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() => alertForDeleteAppointment(_id)}
+                >
+                  Delete
+                </a>
+              </li>
+              <hr />
+              <li>
+                {" "}
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() =>
+                    alertForUpdateCompletion(_id, { status: false })
+                  }
+                >
+                  Undo Completion
+                </a>
+              </li>
+
+              <li>
+                {" "}
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() => alertForUpdatePayment(_id, { paid: false })}
+                >
+                  Undo Pay
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-2xs text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() =>
+                    alertForUpdateDelivery(_id, { delivered: false })
+                  }
+                >
+                  {" "}
+                  Undo Deliver{" "}
+                </a>
+              </li>
+            </ul>
+          </div> */}
           <button
             id="dropdownDividerButton"
             data-dropdown-toggle={`dropdownDivider+${index}`}
             className="text-white uppercase bg-red-700 hover:bg-red-800 font-medium rounded-lg text-2xs px-5 py-2.5 inline-flex items-center"
-          >
+            onClick={() => console.log(`clicked ${index}`)} >
             Actions{" "}
             <svg
               className="w-4 h-4 ml-2"
@@ -129,9 +230,9 @@ const TableData = ({
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M19 9l-7 7-7-7"
               ></path>
             </svg>

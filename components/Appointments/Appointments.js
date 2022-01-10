@@ -72,7 +72,7 @@ const Appointments = ({
   return (
     <div className="grid md:grid-cols-2 sm:flex">
       <ToastContainer />
-      <div className="w-full text-center sm:text-left px-3 sm:px-5 py-6 bg-white rounded-lg md:mt-12 lg:ml-20 sm:w-2/4">
+      <div className="w-full sm:text-left px-3 sm:px-5 py-6 bg-white rounded-lg md:mt-12 lg:ml-20 sm:w-2/4">
         <button
           className="bg-green-700 hover:bg-green-800 text-white p-2 font-bold rounded-lg"
           onClick={() => handleSearchForm(true)}

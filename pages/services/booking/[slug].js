@@ -6,14 +6,21 @@ import Layout from "@/components/Layout";
 import { data } from "FakeData";
 import { useState } from 'react';
 import { withProtected } from "@/helpers/route";
+import { useRouter } from "next/router";
+import { useContext } from "react/cjs/react.development";
+import { AuthContext } from "@/context/AuthContext";
 
 const BookingPage = ({ service }) => {
     const [selectedDate, setSelectedDate] = useState(new Date())
+
+    const {user} = useContext(AuthContext)
 
     const handleDateChange = date => {
         setSelectedDate(date);
     }
     const { title, price } = service;
+
+    const router = useRouter()
 
     const appointmentSaved = (data) => {
         if (data) {
@@ -26,6 +33,7 @@ const BookingPage = ({ service }) => {
                 draggable: true,
                 progress: undefined,
                 })
+            router.push(`/dashboard?email=${user.email}`)    
         }
     }
     return (

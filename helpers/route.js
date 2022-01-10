@@ -1,7 +1,6 @@
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/dist/client/router";
-import { useContext, useEffect, useState } from "react";
-import autolaneApi from '../pages/api/autolane';
+import { useContext, useEffect } from "react";
 
 
 export function withPublic(Component) {
